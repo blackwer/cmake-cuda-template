@@ -12,6 +12,9 @@ std::ostream &operator<<(std::ostream &out, cudaDeviceProp const &props) {
     out << "Max threads/block: " << props.maxThreadsPerBlock << std::endl;
     out << "Peak memory clock rate (GHz): " << props.memoryClockRate / 1E6 << std::endl;
     out << "Memory bus width (bytes): " << props.memoryBusWidth / 8 << std::endl;
+    // (DDR = factor of 2), (mem clock in kHz = factor of 1000), (bus width in bits = factor of 1/8/1024^3),
+    out << "Theoretical memory throughput (GiB/s): "
+        << (double)2 * 1000 * props.memoryClockRate * props.memoryBusWidth / 8 / (1024 * 1024 * 1024) << std::endl;
     out << "Global memory (GiB): " << (double)props.totalGlobalMem / (1024 * 1024 * 1024) << std::endl;
     out << "Shared memory/block (KiB): " << props.sharedMemPerBlock / 1024 << std::endl;
 

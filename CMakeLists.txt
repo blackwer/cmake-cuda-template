@@ -5,4 +5,4 @@ project(
   LANGUAGES CXX CUDA)
 
 add_executable(main src/main.cu)
-set_property(TARGET main PROPERTY CUDA_ARCHITECTURES 70)
+set_property(TARGET main PROPERTY CUDA_ARCHITECTURES "70;75")
